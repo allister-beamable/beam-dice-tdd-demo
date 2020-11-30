@@ -1,9 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
+
+app = Flask(__name__)
 
 
-def create_app():
-  app = Flask(__name__)
-  return app
-
-
-app = create_app()
+@app.route('/dice')
+def dice():
+  return jsonify({'total': 6})
