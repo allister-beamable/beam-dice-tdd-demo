@@ -36,3 +36,14 @@ def check_many_rolls(context, number):
     if total != avoided_number:
       same = False
   assert not same
+
+
+@then('eventually {number} should appear')
+def check_value_distribution(context, number):
+  expected_number = int(number)
+  observed = False
+  for response in context.responses:
+    total = response.json['total']
+    if total == expected_number:
+      observed = True
+  assert observed

@@ -12,3 +12,17 @@ Feature: rolling dice
     Given the dice roller is set up
     When we roll a bunch of times
     Then eventually the number should be something other than 6
+
+  Scenario Outline: rolling one of the six valid faces
+    Given the dice roller is set up
+    When we roll a bunch of times
+    Then eventually <side> should appear
+
+    Examples:
+    | side |
+    | 1    |
+    | 2    |
+    | 3    |
+    | 4    |
+    | 5    |
+    | 6    |
