@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from . import dice
 
 
 def create_app():
@@ -6,6 +7,6 @@ def create_app():
 
   @app.route('/dice')
   def dice_handler():
-    return jsonify({'total': 6})
+    return jsonify({'total': dice.roll()})
 
   return app
