@@ -9,7 +9,7 @@ behave:
 	behave
 
 test:
-	python -m pytest
+	python -m pytest --cov=beamdice
 
 run:
 	FLASK_ENV=development FLASK_APP=beamdice flask run

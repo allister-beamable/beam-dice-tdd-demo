@@ -8,6 +8,7 @@ behave = "*"
 flask = "*"
 requests = "*"
 pytest = "*"
+pytest-cov = "*"
 
 [dev-packages]
 
