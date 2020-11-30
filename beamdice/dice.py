@@ -6,4 +6,8 @@ LOTS = 10000
 
 
 def roll():
-  return random.randrange(LOTS) % 6
+  face = random.randrange(LOTS) % 6
+  if face > 0:
+    return face
+  else:
+    return roll()
