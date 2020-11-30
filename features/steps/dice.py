@@ -2,16 +2,16 @@ from behave import given, when, then
 
 
 @given('our dice rolling interface')
-def step_impl(context):
+def dice_setup(context):
   assert context.client
 
 
 @when('we ask to roll one die')
-def step_impl(context):
+def request_roll(context):
   context.response = context.client.get('/dice')
 
 
 @then('the total number should be between {low} and {high}')
-def step_impl(context, low, high):
-  total = context.response.json()['total']
-  assert low <= total <= high
+def check_roll(context, low, high):
+  total = context.response.json['total']
+  assert int(low) <= total <= int(high)
