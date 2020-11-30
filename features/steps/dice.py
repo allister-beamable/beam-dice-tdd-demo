@@ -1,15 +1,14 @@
-from behave import *
-import requests
+from behave import given, when, then
 
 
 @given('our dice rolling interface')
 def step_impl(context):
-  context.url = 'http://localhost:9000/'
+  assert context.client
 
 
 @when('we ask to roll one die')
 def step_impl(context):
-  context.response = requests.get(context.url)
+  context.response = context.client.get('/dice')
 
 
 @then('the total number should be between {low} and {high}')
