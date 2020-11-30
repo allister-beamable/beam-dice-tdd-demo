@@ -8,7 +8,7 @@ def dice_setup(context):
   assert context.client
 
 
-@when('we ask to roll one die')
+@when('we roll one die')
 def request_roll(context):
   context.response = context.client.get('/dice')
 
@@ -17,7 +17,7 @@ def request_roll(context):
 def request_many_rolls(context):
   context.responses = []
   for _ in range(MANY):
-    context.execute_steps('when we ask to roll one die')
+    context.execute_steps('when we roll one die')
     context.responses.append(context.response)
 
 
