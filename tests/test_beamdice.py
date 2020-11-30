@@ -1,6 +1,8 @@
 import unittest
 
-from beamdice import dice
+from flask import Flask
+
+from beamdice import dice, create_app
 
 REPETITIONS = 100
 
@@ -40,3 +42,23 @@ class TestDice(unittest.TestCase):
     for roll in [1, 2, 3, 4, 5, 6]:
       count = counts[roll]
       self.assertGreater(count, 0, f"Never saw {roll} (count={count})")
+
+  def test_create_app(self):
+    """
+    For the sake of coverage, make sure that Flask app creation does
+    the right thing.
+    """
+    app = create_app()
+    self.assertIsInstance(app, Flask)
+
+  def test_roll_endpoint(self):
+    """
+    For the sake of coverage, make sure that GET requests to the dice
+    endpoint return correct JSON.
+    """
+    app = create_app()
+    app.testing = True
+    client = app.test_client()
+    response = client.get('/dice')
+    result_json = str(response.data, 'utf-8')
+    self.assertRegex(result_json, r'{"total":[1-6]}')
