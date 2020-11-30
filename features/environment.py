@@ -1,9 +1,10 @@
 from behave import fixture, use_fixture
-from beamdice import app
+import beamdice
 
 
 @fixture
 def dice_client(context, *args, **kwargs):
+  app = beamdice.create_app()
   app.testing = True
   context.client = app.test_client()
   yield context.client

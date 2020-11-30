@@ -1,8 +1,11 @@
 from flask import Flask, jsonify
 
-app = Flask(__name__)
 
+def create_app():
+  app = Flask(__name__)
 
-@app.route('/dice')
-def dice():
-  return jsonify({'total': 6})
+  @app.route('/dice')
+  def dice_handler():
+    return jsonify({'total': 6})
+
+  return app
